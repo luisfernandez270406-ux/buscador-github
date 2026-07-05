@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Github</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Github Buscador de Usuarios</h1>
+        <button id="themeButton" aria-label="Cambiar tema">🌙</button>
+    </header>
+    <main>
+        <section class="search-section">
+            <h2>Busca cualquier usuario de Github</h2>
+            <p>Escribe un nombre de usuario</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Ejemplo: octocat" autocomplete="off">
+            </div>
+        </section>
+        <section id="loader" hidden>
+            <p>Cargando usuarios...</p>
+        </section>
+        <section id="errorMessage" hidden>
+            <p>No se encontraron usuarios.</p>
+        </section>
+        <section id="results">
+
+        </section>
+    </main>
+    <footer>
+        <p>Proyecto desarrollado con HTML,CSS y JavaScript</p>
+    </footer>
+    <script src="js/app.js"></script>
+    
+</body>
+</html>
