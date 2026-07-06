@@ -73,7 +73,7 @@ main{
     border-color: var(--color-primario);
 }
 
-#loader,#error-message{
+#loader,#errorMessage{
     text-align: center;
     margin-top: 20px 0;
 }
@@ -144,4 +144,13 @@ footer{
 
 .card a:hover {
     opacity: .85;
+}
+
+/*loader*/
+#loader {
+    text-align: center;
+    padding: 40px;
+    font-size:1.2rem;
+    color: var(--color-primario);
+    font-weight: bold;
 }

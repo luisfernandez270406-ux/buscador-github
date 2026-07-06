@@ -17,16 +17,21 @@ inputBusqueda.addEventListener("input", () => {
 });     
 
 async function buscarUsuarios() {
-    console.log("Nueva búsqueda");
     contenedorResultados.innerHTML = ""; // Limpiar resultados anteriores
     const usuario = inputBusqueda.value.trim();
     if (usuario === "") {
         return; // No realizar la búsqueda si el campo está vacío
     }
-
-    const url = `https://api.github.com/search/users?q=${usuario}&per_page=3`;
+    loader.hidden = false;
+    errorMessage.hidden = true; // Ocultar mensaje de error al iniciar la búsqueda
+    try {
+        const url = `https://api.github.com/search/users?q=${usuario}&per_page=3`;
     const respuesta = await fetch(url);
-    const datos = await respuesta.json();
+    const datos = await respuesta.json(); 
+    if (datos.items.length === 0) {
+        errorMessage.hidden = false; // Mostrar mensaje de error si no se encuentran resultados
+        return;
+    }
     console.log(datos.items.length);
     let tarjetas = "";
     datos.items.forEach(usuario => {
@@ -40,4 +45,12 @@ async function buscarUsuarios() {
         console.log(usuario.login);
     }); 
     contenedorResultados.innerHTML = tarjetas;
+        
+    } catch (error) {
+        errorMessage.hidden = false; // Mostrar mensaje de error si ocurre un problema
+        console.error(error);
+    } finally {
+        loader.hidden = true;
+    }
+    
 }
