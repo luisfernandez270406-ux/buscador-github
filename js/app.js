@@ -34,16 +34,21 @@ async function buscarUsuarios() {
     }
     console.log(datos.items.length);
     let tarjetas = "";
-    datos.items.forEach(usuario => {
+    for (const usuario of datos.items) {
+        const respuestaDetalle = await fetch(`https://api.github.com/users/${usuario.login}`);
+        const detalle = await respuestaDetalle.json(); 
         tarjetas += `
         <div class="card">
-            <img src="${usuario.avatar_url}" alt="Avatar de ${usuario.login}">
-            <h3>${usuario.login}</h3>
-            <a href="${usuario.html_url}" target="_blank">Ver Perfil</a>
+            <img src="${detalle.avatar_url}" alt="Avatar de ${detalle.login}">
+            <h3>${detalle.name || "Sin nombre"}</h3>
+            <p class="username">@${detalle.login}</p>
+            <p><strong>Empresa:</strong> ${detalle.company || "No especificada"}</p>
+            <p><strong>Repositorios:</strong> ${detalle.public_repos}</p>
+            <a href="${detalle.html_url}" target="_blank">Ver Perfil</a>
         </div> 
         `  
-        console.log(usuario.login);
-    }); 
+        console.log(detalle);
+    }; 
     contenedorResultados.innerHTML = tarjetas;
         
     } catch (error) {

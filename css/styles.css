@@ -145,6 +145,17 @@ footer{
 .card a:hover {
     opacity: .85;
 }
+.card p {
+    margin: 6px 0;
+    color: var(--color-texto-secundario);
+    font-size: .95rem;
+}
+
+.username {
+    font-weight: bold;
+    color: var(--color-primario) !important;
+    margin-bottom: 10px !important;
+}
 
 /*loader*/
 #loader {
