@@ -5,10 +5,16 @@ const loader = document.getElementById("loader");
 const mensajeError = document.getElementById("errorMessage");
 const botonTema = document.getElementById("themeButton");
 
+let tiempoEspera; // Variable para almacenar el temporizador
 
 inputBusqueda.addEventListener("input", () => {
-    buscarUsuarios();
-});
+    clearTimeout(tiempoEspera); // Limpiar el temporizador anterior
+    tiempoEspera = setTimeout(() => {
+        buscarUsuarios();
+    }, 500); // Esperar 500 ms después de que el usuario deje de escribir
+
+
+});     
 
 async function buscarUsuarios() {
     console.log("Nueva búsqueda");
