@@ -70,17 +70,15 @@ async function buscarUsuarios() {
     
 }
 const temaGuardado = localStorage.getItem("tema");
-
 if (temaGuardado) {
-
-    if (temaGuardado === "oscuro") {
+    if (temaGuardado === "dark") {
         document.body.classList.add("dark-theme");
     }
 
 } else {
-
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.body.classList.add("dark-theme");
     }
-
 }
+
+
