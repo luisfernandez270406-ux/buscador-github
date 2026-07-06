@@ -22,8 +22,9 @@ async function buscarUsuarios() {
     const respuesta = await fetch(url);
     const datos = await respuesta.json();
     console.log(datos.items.length);
+    let tarjetas = "";
     datos.items.forEach(usuario => {
-        contenedorResultados.innerHTML += `
+        tarjetas += `
         <div class="card">
             <img src="${usuario.avatar_url}" alt="Avatar de ${usuario.login}">
             <h3>${usuario.login}</h3>
@@ -32,5 +33,5 @@ async function buscarUsuarios() {
         `  
         console.log(usuario.login);
     }); 
-    console.log(datos.items[0].login);
+    contenedorResultados.innerHTML = tarjetas;
 }
