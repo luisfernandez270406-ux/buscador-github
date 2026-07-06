@@ -6,6 +6,16 @@ const mensajeError = document.getElementById("errorMessage");
 const botonTema = document.getElementById("themeButton");
 
 let tiempoEspera; // Variable para almacenar el temporizador
+botonTema.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-theme");
+    if (document.body.classList.contains("dark-theme")) {
+        localStorage.setItem("tema", "oscuro");
+    } else {
+        localStorage.setItem("tema", "claro");
+    }
+
+});
 
 inputBusqueda.addEventListener("input", () => {
     clearTimeout(tiempoEspera); // Limpiar el temporizador anterior
@@ -23,13 +33,13 @@ async function buscarUsuarios() {
         return; // No realizar la búsqueda si el campo está vacío
     }
     loader.hidden = false;
-    errorMessage.hidden = true; // Ocultar mensaje de error al iniciar la búsqueda
+    mensajeError.hidden = true; // Ocultar mensaje de error al iniciar la búsqueda
     try {
         const url = `https://api.github.com/search/users?q=${usuario}&per_page=3`;
     const respuesta = await fetch(url);
     const datos = await respuesta.json(); 
     if (datos.items.length === 0) {
-        errorMessage.hidden = false; // Mostrar mensaje de error si no se encuentran resultados
+        mensajeError.hidden = false; // Mostrar mensaje de error si no se encuentran resultados
         return;
     }
     console.log(datos.items.length);
@@ -52,10 +62,25 @@ async function buscarUsuarios() {
     contenedorResultados.innerHTML = tarjetas;
         
     } catch (error) {
-        errorMessage.hidden = false; // Mostrar mensaje de error si ocurre un problema
+        mensajeError.hidden = false; // Mostrar mensaje de error si ocurre un problema
         console.error(error);
     } finally {
         loader.hidden = true;
     }
     
+}
+const temaGuardado = localStorage.getItem("tema");
+
+if (temaGuardado) {
+
+    if (temaGuardado === "oscuro") {
+        document.body.classList.add("dark-theme");
+    }
+
+} else {
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.classList.add("dark-theme");
+    }
+
 }

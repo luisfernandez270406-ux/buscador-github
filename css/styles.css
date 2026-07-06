@@ -165,3 +165,16 @@ footer{
     color: var(--color-primario);
     font-weight: bold;
 }
+
+/*modo oscuro*/
+body.dark-theme{
+
+    --color-fondo:#121212;
+
+    --color-superficie:#1E1E1E;
+
+    --color-texto:#F5F5F5;
+
+    --color-texto-secundario:#BDBDBD;
+
+}
