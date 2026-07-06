@@ -42,7 +42,7 @@ async function buscarUsuarios() {
         mensajeError.hidden = false; // Mostrar mensaje de error si no se encuentran resultados
         return;
     }
-    console.log(datos.items.length);
+    
     let tarjetas = "";
     for (const usuario of datos.items) {
         const respuestaDetalle = await fetch(`https://api.github.com/users/${usuario.login}`);
@@ -57,7 +57,7 @@ async function buscarUsuarios() {
             <a href="${detalle.html_url}" target="_blank">Ver Perfil</a>
         </div> 
         `  
-        console.log(detalle);
+        
     }; 
     contenedorResultados.innerHTML = tarjetas;
         
@@ -71,7 +71,7 @@ async function buscarUsuarios() {
 }
 const temaGuardado = localStorage.getItem("tema");
 if (temaGuardado) {
-    if (temaGuardado === "dark") {
+    if (temaGuardado === "oscuro") {
         document.body.classList.add("dark-theme");
     }
 
